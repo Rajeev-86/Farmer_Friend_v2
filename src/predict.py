@@ -7,46 +7,47 @@ from typing import Any, List
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(BASE_DIR)
 from src.preprocess.SC_preprocess import transform_preprocessor
-from src.preprocess.SD_preprocess import Preprocessor
+from src.preprocess.SD_preprocess import handler
 from src.preprocess.YR_preprocess import transform_preprocessing
 
 custom_globals = {
     #'preprocess_data': preprocess_data,
-    'Preprocessor': Preprocessor,
+    #'Preprocessor': Preprocessor,
     #'preprocess_dtypes': preprocess_dtypes,
+    'handler': handler,
     'transform_preprocessor': transform_preprocessor,
     'transform_preprocessing': transform_preprocessing
 }
 
 def predict_market_demand(data: dict[str, Any]):
 
-    sarimax_input = {
+    new_data = {
         "Year": [data["year"]],  
         "Month": [data["month"]],  
         "Crop": [data["crop"]],
         "Region": [data["region"]]
     }
 
-    sarimax_input  = pd.DataFrame(sarimax_input)  # Now it behaves like the second input
+    new_data  = pd.DataFrame(new_data)  # Now it behaves like the second input
 
     # Load preprocessor and model
-    PREPROCESS_PATH = os.path.join(BASE_DIR, 'models', 'Demand_Predictor', 'final_preprocessor_SD.pkl')
+    PREPROCESS_PATH = os.path.join(BASE_DIR, 'models', 'Demand_Predictor', 'newest_preprocessor_SD.pkl')
     with open(PREPROCESS_PATH, 'rb') as file:
         preprocessor = cp.load(file)
-    MODEL_PATH = os.path.join(BASE_DIR, 'models', 'Demand_Predictor', 'final_model_SD.pkl')
+    MODEL_PATH = os.path.join(BASE_DIR, 'models', 'Demand_Predictor', 'newest_model_SD.pkl')
     with open(MODEL_PATH, 'rb') as file:
         model = cp.load(file)
+    new_columns = model.feature_names_in_
     # Transform and make predictions
-    preprocessor = Preprocessor()  # Create an instance
-    data_transformed = preprocessor.transform(sarimax_input)
-    predicted_demand = model.predict(start=0, end=0, exog=data_transformed)
-    return float(predicted_demand.iloc[0])
+    data_transformed = pd.DataFrame(preprocessor.transform(new_data), columns=new_columns)
+    predicted_demand = model.predict(data_transformed)
+    return float(predicted_demand[0])
 
 def predict_compatibility(data: dict[str, Any]):
 
     classifier_input = {
     "Crop_Type": [data["crop"]],  # Ensure single crop
-    "Soil_Type": [data["Soil_Type"]],
+    "Soil_Type": [data["soil_type"]],
     "Farm_Size_Acres": [data["farm_size_acres"]],
     "Irrigation_Available": [data["irrigation_available"]],
     "Soil_pH": [data["soil_pH"]],
