@@ -31,10 +31,10 @@ def predict_market_demand(data: dict[str, Any]):
     new_data  = pd.DataFrame(new_data)  # Now it behaves like the second input
 
     # Load preprocessor and model
-    PREPROCESS_PATH = os.path.join(BASE_DIR, 'models', 'Demand_Predictor', 'newest_preprocessor_SD.pkl')
+    PREPROCESS_PATH = os.path.join(BASE_DIR, 'models', 'Demand_Predictor', 'preprocessor_SD.pkl')
     with open(PREPROCESS_PATH, 'rb') as file:
         preprocessor = cp.load(file)
-    MODEL_PATH = os.path.join(BASE_DIR, 'models', 'Demand_Predictor', 'newest_model_SD.pkl')
+    MODEL_PATH = os.path.join(BASE_DIR, 'models', 'Demand_Predictor', 'model_SD.pkl')
     with open(MODEL_PATH, 'rb') as file:
         model = cp.load(file)
     new_columns = model.feature_names_in_
@@ -59,10 +59,10 @@ def predict_compatibility(data: dict[str, Any]):
     }
     classifier_input = pd.DataFrame(classifier_input)
     # Load preprocessor and model
-    PREPROCESS_PATH = os.path.join(BASE_DIR, 'models', 'Soil-Climate_Compatibility_Classifier', 'final_preprocessor_SC.pkl')
+    PREPROCESS_PATH = os.path.join(BASE_DIR, 'models', 'Soil-Climate_Compatibility_Classifier', 'preprocessor_SC.pkl')
     with open(PREPROCESS_PATH, 'rb') as file:
         preprocessor = cp.load(file)
-    MODEL_PATH = os.path.join(BASE_DIR, 'models', 'Soil-Climate_Compatibility_Classifier', 'final_model_SC.pkl')
+    MODEL_PATH = os.path.join(BASE_DIR, 'models', 'Soil-Climate_Compatibility_Classifier', 'model_SC.pkl')
     with open(MODEL_PATH, 'rb') as file:
         model = cp.load(file)
     # Transform and make prediction
@@ -91,10 +91,10 @@ def predict_yield(data: dict[str, Any]):
     }
     yield_input = pd.DataFrame(yield_input)
     # Load preprocessor and model
-    PREPROCESS_PATH = os.path.join(BASE_DIR, 'models', 'Yield_Regression', 'final_preprocessor_YR.pkl')
+    PREPROCESS_PATH = os.path.join(BASE_DIR, 'models', 'Yield_Regression', 'preprocessor_YR.pkl')
     with open(PREPROCESS_PATH, 'rb') as file:
         preprocessor = cp.load(file)
-    MODEL_PATH = os.path.join(BASE_DIR, 'models', 'Yield_Regression', 'final_model_YR.pkl')
+    MODEL_PATH = os.path.join(BASE_DIR, 'models', 'Yield_Regression', 'model_YR.pkl')
     with open(MODEL_PATH, 'rb') as file:
         model = cp.load(file)
     # Transform and make predictions
