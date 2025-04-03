@@ -1,7 +1,8 @@
-# Make sure each value in this list corresponds to the crops by indices. Eg- Rice has supply value of 123 and Pea has 807. 
-# if there is no supplied value of crop then set is 0 in supply_tons list.
+# Make sure each value in supply_tons list corresponds to the crops list by indices. Eg- Rice has supply value of 123 and Pea has 807. 
+# if there is no supplied value of crop then set it 0 in supply_tons list.
 # The list of crops should be passed as it is for all requests.
-# 
+# Possible values of Regions ["Raipur Division", "Bilaspur Division", "Balod Division", "Sarangarh-Bilaigarh Division", "Surguja Division"]
+# Possible values of Soil ["Alluvial soils", "Black soils", "Laterite soils", "Red and Yellow soils"]
 
 #Request Body
 {
