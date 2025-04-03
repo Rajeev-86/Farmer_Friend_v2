@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+scikit-learn
+pydantic
+pandas
+statsmodels
+typing
+gdown
+cloudpickle
