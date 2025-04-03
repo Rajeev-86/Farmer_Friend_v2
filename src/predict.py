@@ -13,7 +13,7 @@ from src.preprocess.YR_preprocess import transform_preprocessing
 custom_globals = {
     #'preprocess_data': preprocess_data,
     'Preprocessor': Preprocessor,
-    'preprocess_dtypes': preprocess_dtypes,
+    #'preprocess_dtypes': preprocess_dtypes,
     'transform_preprocessor': transform_preprocessor,
     'transform_preprocessing': transform_preprocessing
 }
