@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: fastapi-app
+    env: docker
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8000
