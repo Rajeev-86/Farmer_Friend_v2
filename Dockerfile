@@ -1,5 +1,5 @@
 # Use an official lightweight Python image
-FROM python:3.10
+FROM python:3.11
 
 # Set the working directory in the container
 WORKDIR /app
@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose the FastAPI port
-EXPOSE 7000
+EXPOSE 10000
 
 # Start FastAPI with Uvicorn
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "10000"]
