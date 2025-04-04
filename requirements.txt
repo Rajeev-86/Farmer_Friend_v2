@@ -4,4 +4,4 @@ scikit-learn
 pydantic
 pandas
 typing
-cloudpickle
+cloudpickle==3.1.1
